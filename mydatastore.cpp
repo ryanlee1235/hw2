@@ -6,7 +6,17 @@
 
 //MyDataStore::MyDataStore() { }
 
-MyDataStore::~MyDataStore() { }
+MyDataStore::~MyDataStore() 
+{
+    for(int i = 0; i < (int)products.size(); i++)
+    {
+        delete products[i];
+    }
+    for(int i = 0; i < (int)users.size(); i++)
+    {
+        delete users[i];
+    }
+}
 
 /**
  * Adds a product to the data store
@@ -48,7 +58,14 @@ void MyDataStore::addUser(User* u)
  */
 std::vector<Product*> MyDataStore::search(std::vector<std::string>& terms, int type)
 {
+    std::vector<Product*> v; //(setOut.begin(), setOut.end());
+    if((int)terms.size() <1)
+    {
+        return v;
+    }
     std::set<Product*> setOut;
+    //if(type == 0) {setOut = searchMap[terms[0]];}
+    int count = 0;
     for(int i = 0; i < (int)terms.size(); i++)
     {
         std::map<std::string, std::set<Product*>>::iterator it = searchMap.find(terms[i]);
@@ -56,7 +73,12 @@ std::vector<Product*> MyDataStore::search(std::vector<std::string>& terms, int t
         {
             if(type == 0)
             {
+                if(count == 0)
+                {
+                    setOut = it->second;
+                }
                 setOut = setIntersection(setOut, it->second);
+                count++;
             }
             else
             {
@@ -64,7 +86,10 @@ std::vector<Product*> MyDataStore::search(std::vector<std::string>& terms, int t
             }
         }
     }
-    std::vector<Product*> v(setOut.begin(), setOut.end());
+    for(Product* p : setOut)
+    {
+        v.push_back(p);
+    }
     return v;
 }
 
@@ -133,6 +158,7 @@ void MyDataStore::buyCart(int userInd)
             d.pop_front();
             noBuy++;
         }
+        it->second = d;
     }
 }
 

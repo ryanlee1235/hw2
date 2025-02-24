@@ -13,16 +13,16 @@ Clothing::Clothing(const std::string name, double price, int qty, const std::str
 std::set<std::string> Clothing::keywords() const
 {
     std::set<std::string> keywordsSet;
-    keywordsSet = parseStringToWords(name_);
-    keywordsSet.insert(size_);
-    keywordsSet.insert(brand_);
+    keywordsSet = parseStringToWords(name_ + " " + brand_);
+    keywordsSet.insert(convToLower(size_));
+    //keywordsSet.insert(brand_);
     
     return keywordsSet;
 }
 
 std::string Clothing::displayString() const
 {
-    std::string display = name_ + "\nGenre: " + size_ + " Brand: " + brand_ + "\n" + std::to_string(price_) + " " + std::to_string(qty_) + " left.";
+    std::string display = name_ + "\nSize: " + size_ + " Brand: " + brand_ + "\n" + std::to_string(price_) + " " + std::to_string(qty_) + " left.";
     return display;
 }
 

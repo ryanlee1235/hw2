@@ -105,18 +105,26 @@ int main(int argc, char* argv[])
             {
                 string username;
                 int hit_result_index;
-                if(ss >> username && ss >> hit_result_index)
+                ss >> username;
+                if(!ss.fail())
                 {
                     int userValid = ds.checkUser(username);
-                    if(userValid >= 0 && (hit_result_index >= 0 && hit_result_index < (int)hits.size()))
+                    ss >> hit_result_index;
+                    hit_result_index--;
+                    if(!ss.fail())
                     {
-                        ds.addCart(userValid, hits[hit_result_index]);
+                      if(userValid >= 0 && (hit_result_index >= 0 && hit_result_index < (int)hits.size()))
+                      {
+                          ds.addCart(userValid, hits[hit_result_index]);
+                      }
+                      else
+                      {
+                          cout << "Invalid request" << endl;
+                      }
                     }
-                    else
-                    {
-                        cout << "Invalid request" << endl;
-                    }
+                    else cout << "Invalid request" << endl;
                 }
+                else cout << "Invalid request" << endl;
             }
             else if( cmd == "VIEWCART")
             {
@@ -132,12 +140,13 @@ int main(int argc, char* argv[])
                         int index = 0;
                         for(it = d.begin(); it != d.end(); ++it)
                         {
-                            cout << index << ": " << (*it)->displayString() << endl;
+                            cout << "Item " << (index + 1) << "\n" << (*it)->displayString() << endl;
+                            index++;
                         }
                     }
                     else
                     {
-                        cout << "Invalid request" << endl;
+                        cout << "Invalid username" << endl;
                     }
                 }
             }
@@ -153,7 +162,7 @@ int main(int argc, char* argv[])
                     }
                     else
                     {
-                        cout << "Invalid request" << endl;
+                        cout << "Invalid username" << endl;
                     }
                 }
             }

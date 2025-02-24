@@ -31,7 +31,7 @@ std::set<std::string> Book::keywords() const
 {
     std::set<std::string> keywordsSet;
     keywordsSet = parseStringToWords(name_ + " " + author_);
-    keywordsSet.insert(isbn_);
+    keywordsSet.insert(convToLower(isbn_));
     
     return keywordsSet;
 }

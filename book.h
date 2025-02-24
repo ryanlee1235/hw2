@@ -1,5 +1,5 @@
-//#ifndef BOOK_H
-//#define BOOK_H
+#ifndef BOOK_H
+#define BOOK_H
 #include <iostream>
 #include <string>
 #include <set>
@@ -10,7 +10,7 @@
 class Book : public Product {
 public:
     Book(const std::string name, double price, int qty, const std::string isbn, const std::string author);
-    ~Book();
+    ~Book(){}
 
     /**
      * Returns the appropriate keywords that this product should be associated with
@@ -42,4 +42,4 @@ protected:
     std::string isbn_;
     std::string author_;
 };
-//#endif
+#endif

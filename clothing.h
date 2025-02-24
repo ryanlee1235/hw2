@@ -1,5 +1,5 @@
-// #ifndef Clothing_H
-// #define Clothing_H
+#ifndef CLOTHING_H
+#define CLOTHING_H
 #include <iostream>
 #include <string>
 #include <set>
@@ -10,7 +10,7 @@
 class Clothing : public Product {
 public:
     Clothing(const std::string name, double price, int qty, const std::string size, const std::string brand);
-    ~Clothing();
+    ~Clothing(){}
 
     /**
      * Returns the appropriate keywords that this product should be associated with
@@ -42,4 +42,4 @@ protected:
     std::string size_;
     std::string brand_;
 };
-// #endif
+#endif

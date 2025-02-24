@@ -27,7 +27,7 @@ std::set<std::string> parseStringToWords(string rawWords)
         {
             if(rawWords[i] >= 'A' && rawWords[i] <= 'Z')
             {
-                word += (rawWords[i] - 32);
+                word += (rawWords[i] + 32);
             }
             else
             {
@@ -42,6 +42,10 @@ std::set<std::string> parseStringToWords(string rawWords)
             }
             word = "";
         }
+    }
+    if(word.length() >= 2)
+    {
+        wordSet.insert(word);
     }
     return wordSet;
 }

@@ -1,5 +1,5 @@
-// #ifndef Movie_H
-// #define Movie_H
+#ifndef MOVIE_H
+#define MOVIE_H
 #include <iostream>
 #include <string>
 #include <set>
@@ -10,7 +10,7 @@
 class Movie : public Product {
 public:
     Movie(const std::string name, double price, int qty, const std::string isbn, const std::string author);
-    ~Movie();
+    ~Movie(){}
 
     /**
      * Returns the appropriate keywords that this product should be associated with
@@ -42,4 +42,4 @@ protected:
     std::string genre_;
     std::string rating_;
 };
-// #endif
+#endif
